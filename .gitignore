@@ -1,0 +1,36 @@
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Maven
+target/
+
+# Test output
+test-output/
+allure-results/
+allure-report/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+
+# Kotlin
+.kotlin
