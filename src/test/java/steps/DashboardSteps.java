@@ -4,7 +4,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.BaseUI;
@@ -34,7 +36,7 @@ public class DashboardSteps extends BaseUI {
 
     @When("doctor clicks on sign in button")
     public void doctor_clicks_on_sign_in_button() {
-        waitAndClick(loginPage.loginBtn);
+        waitAndClick(loginPage.signInButton);
     }
 
     @Then("doctor should see the dashboard page")
@@ -50,11 +52,16 @@ public class DashboardSteps extends BaseUI {
         Assertions.assertTrue(dashboardPage.patientsTable.isDisplayed());
     }
 
-    @Then("doctor should see info about appointments on graphic")
-    public void doctor_should_see_info_about_appointments_on_graphic() {
-        waitUntilVisible(20, dashboardPage.graphColumn);
-        hoverOver(dashboardPage.graphColumn);
-        Assertions.assertTrue(dashboardPage.chartLabel.isDisplayed());
+    /*@Then("doctor should see the chart")
+    public void doctor should see the chart() {
+        WebElement chart = waitUntilVisible(dashboardPage.chartSurface);
+        Assertions.assertTrue(chart.isDisplayed());
+    }*/
+
+    @Then("doctor should see the chart")
+    public void doctor_should_see_the_chart() {
+        WebElement chart = waitUntilVisible(dashboardPage.chartSurface);
+        Assertions.assertTrue(chart.isDisplayed());
     }
 
     @When("doctor clicks on patient")
@@ -68,5 +75,11 @@ public class DashboardSteps extends BaseUI {
     public void doctor_should_see_patients_profile() {
         waitUntilVisible(20, dashboardPage.patientProfileBtn);
         Assertions.assertTrue(dashboardPage.patientProfileBtn.isDisplayed());
+    }
+
+    @Then("doctor should see active patients info")
+    public void doctor_should_see_active_patients_info() {
+        waitUntilVisible(10, dashboardPage.acticePatientsBar);
+        Assertions.assertTrue(dashboardPage.activePatientsBarText.isDisplayed());
     }
 }

@@ -1,14 +1,12 @@
 package utils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Random;
 
 public class BaseUI {
@@ -127,9 +125,78 @@ public class BaseUI {
         );
     }
 
-    public static void hoverOver(WebElement element) {
-        Actions actions = new Actions(Driver.getDriver());
-        actions.moveToElement(element).perform();
+    public WebElement waitUntilVisible(By locator) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public void hoverOver(By locator) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+
+        for (int i = 0; i < 5; i++) {
+            try {
+                WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+                scrollIntoViewJS(element);
+                new Actions(Driver.getDriver())
+                        .moveToElement(element, 1, 1)
+                        .pause(Duration.ofMillis(500))
+                        .perform();
+                return;
+            } catch (StaleElementReferenceException e) {
+                System.out.println("Retry hover because chart was re-rendered...");
+            }
+        }
+
+        throw new RuntimeException("Unable to hover over dynamic element: " + locator);
+    }
+
+    public void hoverOverWithOffset(By locator, int xOffset, int yOffset) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        scrollIntoViewJS(element);
+
+        new Actions(Driver.getDriver())
+                .moveToElement(element, xOffset, yOffset)
+                .pause(Duration.ofSeconds(1))
+                .perform();
+    }
+
+    public WebElement waitUntilAnyElementVisible(By locator, int seconds) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(seconds));
+
+        return wait.until(driver -> {
+            List<WebElement> elements = driver.findElements(locator);
+
+            for (WebElement element : elements) {
+                try {
+                    if (element.isDisplayed()) {
+                        return element;
+                    }
+                } catch (StaleElementReferenceException e) {
+                    // ignore stale and continue
+                }
+            }
+            return null;
+        });
+    }
+
+    public boolean hoverUntilTooltipVisible(By chartLocator, By tooltipLocator) {
+        int[] xOffsets = {90, 120, 150, 180, 210};
+        int yOffset = 120;
+
+        for (int xOffset : xOffsets) {
+            hoverOverWithOffset(chartLocator, xOffset, yOffset);
+
+            List<WebElement> tooltips = Driver.getDriver().findElements(tooltipLocator);
+            for (WebElement tooltip : tooltips) {
+                try {
+                    if (tooltip.isDisplayed()) {
+                        return true;
+                    }
+                } catch (StaleElementReferenceException ignored) {
+                }
+            }
+        }
+        return false;
+    }
 }

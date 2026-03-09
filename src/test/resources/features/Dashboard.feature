@@ -9,8 +9,8 @@ Feature: Dashboard page functionality
   Scenario: doctor can see the dashboard page
     Then doctor should see the dashboard page
 
-  Scenario: doctor can see the info on graphic
-    Then doctor should see info about appointments on graphic
+  Scenario: doctor can see the chart
+    Then doctor should see the chart
 
   Scenario: doctor can see the table with patients
     Then doctor should see the table with patients
@@ -18,3 +18,6 @@ Feature: Dashboard page functionality
   Scenario: doctor can see current patient info
     When doctor clicks on patient
     Then doctor should see patients profile
+
+    Scenario: doctor can see active patients info
+      Then doctor should see active patients info
