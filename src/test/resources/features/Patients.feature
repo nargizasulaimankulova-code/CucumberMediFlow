@@ -13,3 +13,14 @@ Feature: patient page related test cases
     And doctor selects the first patient from the list
     And doctor clicks the View button
     Then patient profile page should be displayed
+
+@editProfile
+  Scenario: Doctor can edit patient profile
+    Given doctor is logged into the clinic portal
+    And doctor navigates to the patients page
+    When doctor selects the first patient from the list
+    And doctor clicks the View button
+    And doctor clicks the Edit button
+    And doctor updates the patient phone number
+    And doctor clicks the Save button
+    Then patient profile should be updated successfully

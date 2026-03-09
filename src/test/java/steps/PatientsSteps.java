@@ -58,5 +58,26 @@ patientsPage.searchPatientInput.sendKeys("a");
 
     }
 
+    @When("doctor clicks the Edit button")
+    public void doctor_clicks_the_edit_button() {
+
+
+    }
+
+    @When("doctor updates the patient phone number")
+    public void doctor_updates_the_patient_phone_number() {
+
+    }
+
+    @When("doctor clicks the Save button")
+    public void doctor_clicks_the_save_button() {
+
+
+    }
+    @Then("patient profile should be updated successfully")
+    public void patient_profile_should_be_updated_successfully() {
+
+    }
+
 }
 
