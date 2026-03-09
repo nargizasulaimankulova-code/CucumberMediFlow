@@ -26,5 +26,17 @@ public class PatientsPage {
     @FindBy(xpath = "//h1[@data-testid='patient-name']")
     public WebElement patentName;
 
+    @FindBy(xpath = "//button[text()=' Edit Profile']")
+    public WebElement editBtn;
+
+    @FindBy(id = "edit_phone")
+    public WebElement phoneNumber;
+
+    @FindBy(xpath = "//button[text()='Save Changes']")
+    public WebElement saveBtn;
+
+    @FindBy(xpath = "//div[text()='Patient updated successfully']")
+    public WebElement successAlert;
+
 
 }

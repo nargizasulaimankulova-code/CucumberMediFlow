@@ -14,7 +14,7 @@ Feature: patient page related test cases
     And doctor clicks the View button
     Then patient profile page should be displayed
 
-@editProfile
+
   Scenario: Doctor can edit patient profile
     Given doctor is logged into the clinic portal
     And doctor navigates to the patients page

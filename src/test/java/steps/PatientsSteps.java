@@ -1,5 +1,6 @@
 package steps;
 
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,6 +18,7 @@ public class PatientsSteps extends BaseUI {
     WebDriver driver = Driver.getDriver();
     PatientsPage patientsPage = new PatientsPage();
     CommonPages commonPages = new CommonPages();
+    Faker faker = new Faker();
 
     Random random = new Random();
 
@@ -60,23 +62,24 @@ patientsPage.searchPatientInput.sendKeys("a");
 
     @When("doctor clicks the Edit button")
     public void doctor_clicks_the_edit_button() {
-
+waitAndClick(patientsPage.editBtn);
 
     }
 
     @When("doctor updates the patient phone number")
     public void doctor_updates_the_patient_phone_number() {
-
+      waitAndSendKeys(patientsPage.phoneNumber,faker.phoneNumber().cellPhone());
     }
 
     @When("doctor clicks the Save button")
     public void doctor_clicks_the_save_button() {
-
+waitAndClick(patientsPage.saveBtn);
 
     }
     @Then("patient profile should be updated successfully")
     public void patient_profile_should_be_updated_successfully() {
-
+    waitUntilVisible(10,patientsPage.successAlert);
+    Assertions.assertTrue(patientsPage.successAlert.isDisplayed());
     }
 
 }
