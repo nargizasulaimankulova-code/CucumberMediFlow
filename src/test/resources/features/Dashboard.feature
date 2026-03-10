@@ -1,3 +1,4 @@
+@regression
 Feature: Dashboard page functionality
 
   Background: doctor sign in
@@ -18,6 +19,6 @@ Feature: Dashboard page functionality
   Scenario: doctor can see current patient info
     When doctor clicks on patient
     Then doctor should see patients profile
-
+@smoke
     Scenario: doctor can see active patients info
       Then doctor should see active patients info

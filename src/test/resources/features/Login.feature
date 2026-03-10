@@ -1,8 +1,9 @@
+@regression
 Feature: all login related test scenarios
 
   Background:
     Given user goes to sign in page
-
+@smoke
   Scenario: verify doctor can login successfully
     When user enters credentials "validUserName" and "validPassword"
     Then verify user signed in successfully
@@ -11,7 +12,7 @@ Feature: all login related test scenarios
     When user enters credentials "invalidUserName" and "invalidPassword"
     Then verify user failed to sign in
 
-
+@smoke
   Scenario Outline: verify all types of users can login
     When user enters username "<username>"
     And user enters password "<password>"

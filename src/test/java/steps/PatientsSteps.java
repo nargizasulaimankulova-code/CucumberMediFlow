@@ -62,7 +62,7 @@ patientsPage.searchPatientInput.sendKeys("a");
 
     @When("doctor clicks the Edit button")
     public void doctor_clicks_the_edit_button() {
-waitAndClick(patientsPage.editBtn);
+jsClick(patientsPage.editBtn);
 
     }
 
