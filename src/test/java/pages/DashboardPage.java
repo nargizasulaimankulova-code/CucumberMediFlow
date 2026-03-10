@@ -21,6 +21,10 @@ public class DashboardPage {
     @FindBy(tagName = "table")
     public WebElement patientsTable;
 
+    @FindBy(css = "button[data-testid='logout-button']")
+    public WebElement logoutButton;
+
+
     public By chartSurface = By.xpath("//*[name()='svg' and contains(@class,'recharts-surface')]");
     public By chartTooltip = By.xpath("//*[contains(@class,'recharts-default-tooltip')]");
     public By chartLabel = By.xpath("//*[contains(@class,'recharts-tooltip-label')]");

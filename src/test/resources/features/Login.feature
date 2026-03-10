@@ -4,10 +4,13 @@ Feature: all login related test scenarios
     Given user goes to sign in page
 
   Scenario: verify doctor can login successfully
-    When user enters username "dr.chen@mediflow.com"
-    And user enters password "Test@1234"
-    And user clicks on sign in button
+    When user enters credentials "validUserName" and "validPassword"
     Then verify user signed in successfully
+
+  Scenario:
+    When user enters credentials "invalidUserName" and "invalidPassword"
+    Then verify user failed to sign in
+
 
   Scenario Outline: verify all types of users can login
     When user enters username "<username>"
