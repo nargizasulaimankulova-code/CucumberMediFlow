@@ -54,13 +54,13 @@ public class AppointmentsSteps extends BaseUI {
                 .format(faker.date().future(30, TimeUnit.DAYS));
         appointmentsPage.dateField.sendKeys(randomDate);
 
-        appointmentsPage.startTimeField.click();
+        //appointmentsPage.startTimeField.click();
+        Thread.sleep(2000);
         appointmentsPage.startTimeField.sendKeys("10:00");
         appointmentsPage.startTimeField.sendKeys(Keys.ARROW_UP);
 
-        appointmentsPage.startTimeField.click();
-
-        appointmentsPage.endTimeField.sendKeys("11:00");
+        //appointmentsPage.startTimeField.click();
+        appointmentsPage.endTimeField.sendKeys("12:00");
         appointmentsPage.endTimeField.sendKeys(Keys.ARROW_DOWN);
         appointmentsPage.endTimeField.click();
     }
