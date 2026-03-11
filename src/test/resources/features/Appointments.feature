@@ -1,3 +1,4 @@
+@regression
 Feature: Appointment page functionality
 
   Background: doctor sign in
