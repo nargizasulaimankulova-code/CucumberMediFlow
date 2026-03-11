@@ -32,6 +32,7 @@ public class PatientsSteps extends BaseUI {
     }
     @Given("doctor navigates to the patients page")
     public void doctor_navigates_to_the_patients_page() {
+        waitUntilVisible(10,commonPages.patients);
       waitAndClick(commonPages.patients);
     }
 
@@ -49,7 +50,7 @@ patientsPage.searchPatientInput.sendKeys("a");
         }
     @When("doctor clicks the View button")
     public void doctor_clicks_the_view_button() {
-      waitAndClick(patientsPage.viewBtn);
+      patientsPage.clickFirstViewPatient();
 
     }
     @Then("patient profile page should be displayed")
@@ -62,7 +63,7 @@ patientsPage.searchPatientInput.sendKeys("a");
 
     @When("doctor clicks the Edit button")
     public void doctor_clicks_the_edit_button() {
-jsClick(patientsPage.editBtn);
+        jsClick(patientsPage.editBtn);
 
     }
 

@@ -1,11 +1,17 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Driver;
 
+import java.time.Duration;
 import java.util.List;
+
+import static utils.Driver.driver;
 
 public class PatientsPage {
     public PatientsPage() {
@@ -20,7 +26,7 @@ public class PatientsPage {
     @FindBy (css = "input[data-testid='patients-search']")
     public WebElement searchPatientInput;
 
-    @FindBy (xpath = "//button[text()='View']")
+    @FindBy (css = "button[data-testid^='view-patient']")
     public WebElement viewBtn;
 
     @FindBy(xpath = "//h1[@data-testid='patient-name']")
@@ -37,6 +43,18 @@ public class PatientsPage {
 
     @FindBy(xpath = "//div[text()='Patient updated successfully']")
     public WebElement successAlert;
+
+    public void clickFirstViewPatient(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        List<WebElement> buttons = wait.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(
+                        By.cssSelector("button[data-testid*='view-patient']")
+                )
+        );
+
+        buttons.get(0).click();
+    }
 
 
 }
