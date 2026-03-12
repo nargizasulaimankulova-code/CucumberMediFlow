@@ -1,3 +1,4 @@
+@regression
 Feature: Prescriptions page functionality
 
   Background: doctor sign in
