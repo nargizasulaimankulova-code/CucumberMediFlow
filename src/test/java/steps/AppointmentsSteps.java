@@ -28,9 +28,10 @@ public class AppointmentsSteps extends BaseUI {
 
 
     @When("doctor navigates to the appointment page")
-    public void doctor_navigates_to_the_appointment_page() {
+    public void doctor_navigates_to_the_appointment_page() throws InterruptedException {
         waitUntilVisible(20, commonPages.appointments);
         waitAndClick(commonPages.appointments);
+        Thread.sleep(2000);
         Assertions.assertTrue(appointmentsPage.appointmentsSign.isDisplayed());
     }
 
@@ -47,7 +48,6 @@ public class AppointmentsSteps extends BaseUI {
 
         appointmentsPage.providerDropDown.click();
         appointmentsPage.getProvider("Osei").click();
-
 
         appointmentsPage.dateField.click();
         String randomDate = new SimpleDateFormat("MM/dd/yyyy")

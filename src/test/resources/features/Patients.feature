@@ -7,6 +7,7 @@ Feature: patient page related test cases
     And user enters password "Test@1234"
     And user clicks on sign in button
 
+#    The view page in UI does not always open/load -> which will cause both below scenarios to Fail
   Scenario: Doctor can view random patient profile from search results
     Given doctor is logged into the clinic portal
     And doctor navigates to the patients page
