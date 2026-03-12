@@ -10,6 +10,8 @@ Feature: schedule page related test cases
     When user opens My Schedule page
     Then user should see My Schedule page elements
 
+#  The buttom 2 Scenarios will work only -> if There are scheduled appointments on current Day.
+#  If there are not scheduled appointments on current day, Tests will Fail
   Scenario: User checks in appointment
     When user opens My Schedule page
     And user clicks Check In button
