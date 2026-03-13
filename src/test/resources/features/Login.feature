@@ -1,4 +1,3 @@
-@regression
 Feature: all login related test scenarios
 
   Background:
@@ -7,7 +6,7 @@ Feature: all login related test scenarios
   Scenario: verify doctor can login successfully
     When user enters credentials "validUserName" and "validPassword"
     Then verify user signed in successfully
-
+  @smoke
   Scenario:
     When user enters credentials "invalidUserName" and "invalidPassword"
     Then verify user failed to sign in
@@ -24,7 +23,7 @@ Feature: all login related test scenarios
       | mgr.wilson@mediflow.com   | Test@1234 |
       | nurse.garcia@mediflow.com | Test@1234 |
 
-
+  @smoke
   Scenario Outline: verify all types of users fail to login with invalid credentials
     When user enters username "<username>"
     And user enters password "<password>"

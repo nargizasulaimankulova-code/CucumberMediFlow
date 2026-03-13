@@ -44,7 +44,7 @@ public class AppointmentsSteps extends BaseUI {
     public void filling_out_the_form() throws InterruptedException {
         waitUntilVisible(40, appointmentsPage.patientDropDown);
         appointmentsPage.patientDropDown.click();
-        appointmentsPage.getPatientByName("Anderson", "Lisa").click();
+        appointmentsPage.getPatientByName("Anderson", "Aiperi").click();
 
         appointmentsPage.providerDropDown.click();
         appointmentsPage.getProvider("Osei").click();

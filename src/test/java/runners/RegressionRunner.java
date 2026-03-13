@@ -7,7 +7,7 @@ import static io.cucumber.core.options.Constants.*;
 
 @Suite
 @SelectClasspathResource("features")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "steps")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "steps,hooks")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/regression-report.html")
 
 

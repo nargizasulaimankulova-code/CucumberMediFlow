@@ -1,4 +1,4 @@
-@regression
+
 Feature: patient page related test cases
 
   Background:

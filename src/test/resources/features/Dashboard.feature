@@ -1,4 +1,4 @@
-@regression
+
 Feature: Dashboard page functionality
 
   Background: doctor sign in
@@ -6,16 +6,16 @@ Feature: Dashboard page functionality
     When doctor enters email "dr.chen@mediflow.com"
     And doctor enters password "Test@1234"
     And doctor clicks on sign in button
-
+@smoke
   Scenario: doctor can see the dashboard page
     Then doctor should see the dashboard page
-
+  @smoke
   Scenario: doctor can see the chart
     Then doctor should see the chart
-
+  @smoke
   Scenario: doctor can see the table with patients
     Then doctor should see the table with patients
-
+  @smoke
   Scenario: doctor can see current patient info
     When doctor clicks on patient
     Then doctor should see patients profile
