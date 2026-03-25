@@ -12,31 +12,31 @@ import utils.Driver;
 import java.io.File;
 
 public class Hooks {
-    @Before
-    public void setUp(){
-        Driver.getDriver();
-    }
-
-    @After
-    public void tearDown(){
-        //Driver.closeDriver();
-        Driver.quitDriver();
-    }
-
-    @After
-    public void takeScreenshotOnFailure(Scenario scenario) {
-
-        if (scenario.isFailed()) {
-            try {
-                WebDriver driver = Driver.getDriver();
-
-                File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(src,
-                        new File("target/screenshots/" + scenario.getName() + ".png"));
-
-            } catch (Exception e) {
-                System.out.println("Screenshot failed: " + e.getMessage());
-            }
-        }
-    }
+//    @Before
+//    public void setUp(){
+//        Driver.getDriver();
+//    }
+//
+//    @After
+//    public void tearDown(){
+//        //Driver.closeDriver();
+//        Driver.quitDriver();
+//    }
+//
+//    @After
+//    public void takeScreenshotOnFailure(Scenario scenario) {
+//
+//        if (scenario.isFailed()) {
+//            try {
+//                WebDriver driver = Driver.getDriver();
+//
+//                File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//                FileUtils.copyFile(src,
+//                        new File("target/screenshots/" + scenario.getName() + ".png"));
+//
+//            } catch (Exception e) {
+//                System.out.println("Screenshot failed: " + e.getMessage());
+//            }
+//        }
+//    }
 }
