@@ -15,14 +15,12 @@ import utils.ConfigurationReader;
 
 public class PatientAPISteps extends ApiUtils {
 
-    RequestSpecification request;
-    Response response;
-
     @Given("base URL")
     public void base_url() {
         request = RestAssured.given().baseUri(ConfigurationReader.getProperty("apiBaseURL"))
                 .contentType(ContentType.JSON);
     }
+
     @Given("{string} has valid authorization")
     public void user_has_valid_authorization(String userType) {
         request = request.header("Authorization", "Bearer " + getToken(userType));
@@ -54,6 +52,8 @@ public class PatientAPISteps extends ApiUtils {
 
         response = request.body(patientRequest).post(endPoint);
     }
+  
+    }
 
     @When("user hits POST {string} with missing required filed")
     public void user_hits_post_with_missing_required_filed(String endPoint) {
@@ -83,10 +83,6 @@ public class PatientAPISteps extends ApiUtils {
         Assertions.assertEquals(statusCode, actualStatusCode);
         System.out.println("response.asPrettyString() = " + response.asPrettyString());
     }
-
-
-
-
 
 
 }
