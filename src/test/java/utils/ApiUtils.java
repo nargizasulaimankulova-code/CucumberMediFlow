@@ -2,11 +2,17 @@ package utils;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 
 import java.util.InputMismatchException;
 
 public class ApiUtils {
+
+    protected static RequestSpecification request;
+    protected static Response response;
+
     public String getToken(String userType){
 
         String email;
@@ -20,6 +26,9 @@ public class ApiUtils {
                 break;
             case "office manager":
                 email = ConfigurationReader.getProperty("officeManagerEmail");
+                break;
+            case "admin":
+                email = ConfigurationReader.getProperty("adminEmail");
                 break;
             default:
                 throw new InputMismatchException("Error! Provide valid type of user: doctor, nurse, office manager");

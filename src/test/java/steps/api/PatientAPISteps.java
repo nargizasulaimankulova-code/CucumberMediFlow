@@ -15,18 +15,17 @@ import utils.ConfigurationReader;
 
 public class PatientAPISteps extends ApiUtils {
 
-    RequestSpecification request;
-    Response response;
-
     @Given("base URL")
     public void base_url() {
         request = RestAssured.given().baseUri(ConfigurationReader.getProperty("apiBaseURL"))
                 .contentType(ContentType.JSON);
     }
+
     @Given("{string} has valid authorization")
     public void user_has_valid_authorization(String userType) {
         request = request.header("Authorization", "Bearer " + getToken(userType));
     }
+
     @When("user hits POST {string}")
     public void user_hits_post(String endPoint) {
         Faker faker = new Faker();
@@ -46,19 +45,15 @@ public class PatientAPISteps extends ApiUtils {
         patientRequest.setInsurance_policy_number("POL12345");
 
 
-
         response = request.body(patientRequest).post(endPoint);
     }
+
     @Then("verify status code is {int}")
     public void verify_status_code_is(Integer statusCode) {
         int actualStatusCode = response.statusCode();
         Assertions.assertEquals(statusCode, actualStatusCode);
         System.out.println("response.asPrettyString() = " + response.asPrettyString());
     }
-
-
-
-
 
 
 }
